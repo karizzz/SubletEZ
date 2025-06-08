@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1F3976FB2DF64603008A5DCA /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3976FA2DF64603008A5DCA /* FirebaseAnalytics */; };
+		1F3976FD2DF64603008A5DCA /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3976FC2DF64603008A5DCA /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		1F3976FF2DF64603008A5DCA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3976FE2DF64603008A5DCA /* FirebaseAuth */; };
+		1F3977012DF64603008A5DCA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3977002DF64603008A5DCA /* FirebaseFirestore */; };
+		1F3977032DF64603008A5DCA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3977022DF64603008A5DCA /* FirebaseMessaging */; };
+		1F3977052DF64603008A5DCA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1F3977042DF64603008A5DCA /* FirebaseStorage */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		1F5E142A2DF3D64900B23FF9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +61,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F3976FB2DF64603008A5DCA /* FirebaseAnalytics in Frameworks */,
+				1F3977012DF64603008A5DCA /* FirebaseFirestore in Frameworks */,
+				1F3977032DF64603008A5DCA /* FirebaseMessaging in Frameworks */,
+				1F3976FF2DF64603008A5DCA /* FirebaseAuth in Frameworks */,
+				1F3976FD2DF64603008A5DCA /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				1F3977052DF64603008A5DCA /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +127,12 @@
 			);
 			name = SubletEZ;
 			packageProductDependencies = (
+				1F3976FA2DF64603008A5DCA /* FirebaseAnalytics */,
+				1F3976FC2DF64603008A5DCA /* FirebaseAnalyticsWithoutAdIdSupport */,
+				1F3976FE2DF64603008A5DCA /* FirebaseAuth */,
+				1F3977002DF64603008A5DCA /* FirebaseFirestore */,
+				1F3977022DF64603008A5DCA /* FirebaseMessaging */,
+				1F3977042DF64603008A5DCA /* FirebaseStorage */,
 			);
 			productName = SubletEZ;
 			productReference = 1F5E141C2DF3D64800B23FF9 /* SubletEZ.app */;
@@ -195,6 +216,9 @@
 			);
 			mainGroup = 1F5E14132DF3D64800B23FF9;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1F5E141D2DF3D64800B23FF9 /* Products */;
 			projectDirPath = "";
@@ -395,6 +419,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -422,6 +447,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -550,6 +576,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1F3976FA2DF64603008A5DCA /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		1F3976FC2DF64603008A5DCA /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		1F3976FE2DF64603008A5DCA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		1F3977002DF64603008A5DCA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		1F3977022DF64603008A5DCA /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		1F3977042DF64603008A5DCA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F3976F92DF64603008A5DCA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1F5E14142DF3D64800B23FF9 /* Project object */;
 }
