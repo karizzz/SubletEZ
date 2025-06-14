@@ -15,7 +15,7 @@ struct SubletEZApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }

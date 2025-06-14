@@ -1,0 +1,11 @@
+.DS_Store
+# Xcode user-specific files
+*.xcuserdatad
+xcuserdata/
+*.xcworkspace/xcuserdata/
+# Derived & Build folders
+DerivedData/
+build/
+# Swift Package Manager
+.swiftpm/
+# macOS system files
