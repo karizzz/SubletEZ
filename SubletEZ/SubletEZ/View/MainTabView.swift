@@ -8,42 +8,41 @@
 
 import SwiftUI
 
+enum Tab {
+    case home, add, chat, profile
+}
+
 struct MainTabView: View {
+    @State private var selectedTab: Tab = .home
+
     var body: some View {
-        TabView {
-            
+        TabView(selection: $selectedTab) {
             HomePage()
                 .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
+                    Label("Home", systemImage: "house.fill")
                 }
+                .tag(Tab.home)
 
-            
-            AddListing()
+            AddListing(selectedTab: $selectedTab)
                 .tabItem {
-                    Image(systemName: "plus")
-                    Text("New Listing")
+                    Label("New Listing", systemImage: "plus")
                 }
+                .tag(Tab.add)
 
-            
             ChatMessagaing()
                 .tabItem {
-                    Image(systemName: "bubble.left")
-                    Text("Inbox")
+                    Label("Inbox", systemImage: "bubble.left")
                 }
+                .tag(Tab.chat)
 
-            
             ProfilePage()
                 .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
+                    Label("Profile", systemImage: "person.fill")
                 }
+                .tag(Tab.profile)
         }
     }
 }
-
-
-
 
 #Preview() {
     MainTabView()
