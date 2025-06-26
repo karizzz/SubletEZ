@@ -13,21 +13,26 @@ struct Sublet: Identifiable {
     var title: String
     var price: Double
     var location: String
-    // Add more fields as needed
+    var description: String?  
+    var schoolName: String?
+    var postalCode: String?
+    
 }
 struct HomePage: View {
     @State private var searchText: String = ""
     @State private var sublets: [Sublet] = []
+    var filteredSublets: [Sublet] {
+        if searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return sublets
+        } else {
+            return sublets.filter { sublet in
+                sublet.location.localizedCaseInsensitiveContains(searchText) ||
+                sublet.title.localizedCaseInsensitiveContains(searchText)
+                // Add more fields as needed
+            }
+        }
+    }
     var body: some View {
-        
-        let dummyListing = [
-            "Cozy basement room near University",
-            "Sunny 1BHK in downtown",
-            "Shared 2BHK close to metro",
-            "Studio apartment - 3 month lease",
-            "Furnished sublet with balcony",
-            "Pet-friendly house near campus"
-        ]
         // Embeds view in a navigation-aware stack
         NavigationStack {
             // ZStack allows layering views on top of each other (image + search bar)
@@ -65,14 +70,20 @@ struct HomePage: View {
                     .padding(.horizontal)
                     ScrollView {
                         VStack(alignment: .leading, spacing: 12) {
-                            ForEach(dummyListing, id: \.self) { listing in
-                                Text(listing)
-                                    .padding()
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(10)
-                                    .shadow(radius: 1)
-                                    .padding(.horizontal)
+                            ForEach(filteredSublets) { sublet in
+                                VStack(alignment: .leading) {
+                                    Text(sublet.title)
+                                        .font(.headline)
+                                    Text("\(sublet.location) • $\(Int(sublet.price))/month")
+                                        .font(.subheadline)
+                                        .foregroundColor(.secondary)
+                                }
+                                .padding()
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(10)
+                                .shadow(radius: 1)
+                                .padding(.horizontal)
                             }
                         }
                     }
@@ -84,27 +95,30 @@ struct HomePage: View {
                 }
     }
     func fetchSublets() {
-            let db = Firestore.firestore()
-            db.collection("sublets").getDocuments { snapshot, error in
-                if let error = error {
-                    print("Error fetching sublets: \(error.localizedDescription)")
-                    return
-                }
-                guard let documents = snapshot?.documents else {
-                    print("No documents in 'sublets' collection")
-                    return
-                }
-                sublets = documents.compactMap { doc in
-                    let data = doc.data()
-                    return Sublet(
-                        id: doc.documentID,
-                        title: data["title"] as? String ?? "",
-                        price: data["price"] as? Double ?? 0,
-                        location: data["location"] as? String ?? ""
-                    )
-                }
+        let db = Firestore.firestore()
+        db.collection("sublets").getDocuments { snapshot, error in
+            if let error = error {
+                print("Error fetching sublets: \(error.localizedDescription)")
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("No documents in 'sublets' collection")
+                return
+            }
+            sublets = documents.compactMap { doc in
+                let data = doc.data()
+                return Sublet(
+                    id: doc.documentID,
+                    title: data["title"] as? String ?? "",
+                    price: data["price"] as? Double ?? 0,
+                    location: data["location"] as? String ?? "",
+                    description: data["description"] as? String,
+                    schoolName: data["schoolName"] as? String,
+                    postalCode: data["postalCode"] as? String
+                )
             }
         }
+    }
 }
 
 
