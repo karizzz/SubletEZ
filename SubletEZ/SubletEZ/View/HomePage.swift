@@ -6,9 +6,18 @@
     //
 
 import SwiftUI
+import FirebaseFirestore
 
+struct Sublet: Identifiable {
+    var id: String
+    var title: String
+    var price: Double
+    var location: String
+    // Add more fields as needed
+}
 struct HomePage: View {
     @State private var searchText: String = ""
+    @State private var sublets: [Sublet] = []
     var body: some View {
         
         let dummyListing = [
@@ -70,7 +79,32 @@ struct HomePage: View {
                 }
             }
         }
+        .onAppear {
+                    fetchSublets()
+                }
     }
+    func fetchSublets() {
+            let db = Firestore.firestore()
+            db.collection("sublets").getDocuments { snapshot, error in
+                if let error = error {
+                    print("Error fetching sublets: \(error.localizedDescription)")
+                    return
+                }
+                guard let documents = snapshot?.documents else {
+                    print("No documents in 'sublets' collection")
+                    return
+                }
+                sublets = documents.compactMap { doc in
+                    let data = doc.data()
+                    return Sublet(
+                        id: doc.documentID,
+                        title: data["title"] as? String ?? "",
+                        price: data["price"] as? Double ?? 0,
+                        location: data["location"] as? String ?? ""
+                    )
+                }
+            }
+        }
 }
 
 
