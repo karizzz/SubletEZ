@@ -199,11 +199,13 @@ struct AddListing: View {
     }
 
     private var discardButtons: some View {
-        Button("Discard", role: .destructive) {
-            selectedTab = .home
-            resetForm()
+        Group {
+            Button("Discard", role: .destructive) {
+                selectedTab = .home
+                resetForm()
+            }
+            Button("Cancel", role: .cancel) {}
         }
-        return Button("Cancel", role: .cancel) {}
     }
 
     // MARK: - Publish Flow ---------------------------------------------------
